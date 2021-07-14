@@ -1,0 +1,135 @@
+body{
+    font-family: 'Space Mono', monospace !important;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: hsl(185, 41%, 84%);
+}
+
+
+
+.calculadora{
+    background: hsl(0, 0%, 100%);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 800px;
+    max-height: 400px;
+    margin: 0 auto;
+    display: flex;
+    @media(max-width: 1024px){
+        max-height: max-content;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        grid-gap: 32px;
+        @media(max-width: 767px){
+            grid-template-columns: 1fr;
+            align-items: center;
+            justify-content: center;
+        }
+        .insert__dados{
+            label {
+                font-size: 16px;
+                font-size: 14px;
+                color: hsl(186, 14%, 43%);
+                font-weight: 700;
+                display: block;
+                margin-bottom: 8px;
+                
+            }
+            input{
+                font-size: 24px;
+                color: hsl(183, 100%, 15%);
+                font-weight: 700;
+                background: hsl(189, 41%, 97%);
+                outline: none;
+                border: none;
+                border-radius: 8px;
+                display: inline-flex;
+                align-items: flex-end;
+            }
+
+            .tip{
+                margin: 32px 0;
+                p {
+                    font-size: 14px;
+                    color: hsl(186, 14%, 43%);
+                    font-weight: 700;
+                }
+                .tip__wrapper{
+                    display: flex;
+                    flex-wrap: wrap;
+                    .button__tip{
+                        background: hsl(183, 100%, 15%);
+                        margin-right: 16px;
+                        display: inline-flex;
+                        justify-content: center;
+                        border: 0;
+                        outline: none;
+                        padding: 8px 16px;
+                        border-radius: 8px;
+                        width: 80px;
+                        text-align: center;
+                        margin-bottom: 16px;
+                        color: #fff;
+                        font-size: 18px;
+                        font-family: 'Space Mono', monospace;
+                    }
+                }
+
+            }
+        }
+
+
+        /* DISPLAY*/
+        .display__result{
+            border-radius: 16px;
+            padding: 16px 32px;
+            background: hsl(183, 100%, 15%);
+            .tip__info{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                p{
+                    color: #fff;
+                    font-size: 16px;
+                    font-weight: 700;
+                }
+                span{
+                    font-size: 32px;
+                    color: hsl(172, 67%, 45%);
+                    font-weight: 700;
+                }
+            }
+
+            .tip__total{
+                padding-top: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                p{
+                    color: #fff;
+                    font-size: 16px;
+                    font-weight: 700;
+                }
+                span{
+                    font-size: 32px;
+                    color: hsl(172, 67%, 45%);
+                    font-weight: 700;
+                }
+
+            }
+        }
+
+
+       
+    }
+}
