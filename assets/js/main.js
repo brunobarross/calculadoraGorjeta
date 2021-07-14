@@ -1,28 +1,40 @@
 document.addEventListener('DOMContentLoaded', ()=>{
-    const valorConta = document.querySelector('#bill');
+    let inptValorConta = document.querySelector('#bill');
 
-    valorConta.addEventListener('change', mostrarNoLCD);
-
-    const btnPorcentagem = document.querySelectorAll('.button__tip');
-
-    btnPorcentagem.forEach((valor)=>{
-        valor.addEventListener('click', calculoPorcentagem);
-    })
-    
-
-    function calculoPorcentagem(event){
-        let btnValor = this.value;
-        btnValor = btnValor * 100;
-        console.log(btnValor)
-    }
-
-
-    function mostrarNoLCD(event){
-        let valorGorjeta = document.querySelector('#valorGorjeta');
-        valorGorjeta.innerHTML = valorConta.value;
-
-    }
+    let btnPorcentagem = document.querySelectorAll('.button__tip');
    
+    let inptPessoas = document.querySelector('#peoples');
+
+
+    btnPorcentagem.forEach((botoes)=>{
+        botoes.addEventListener('click', calculoPorcentagem);
+        console.log(botoes.value)
+    })
+    function calculoPorcentagem(event){
+        const valorConta = Number(inptValorConta.value);
+        const qtdPessoas = Number(inptPessoas.value);
+        const valorBotao = Number(this.value);
+        
+
+        let calculo = (valorConta * valorBotao) / 100;
+
+        let divisaoPessoas = Number(Math.round(calculo / qtdPessoas));
+
+        function mostrarLCD(){
+            const tipInfo = document.querySelector('#valorGorjeta');
+            const valorDivido = document.querySelector('#valorTotal');
+            tipInfo.innerHTML = calculo;
+            valorDivido.innerHTML = divisaoPessoas;
+        }
+
+        mostrarLCD();
+
+    }
     
+
 })
+
+
+
+
 
