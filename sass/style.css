@@ -1,46 +1,57 @@
 body {
   font-family: "Space Mono", monospace !important;
   height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
   background: #c5e4e7;
-}
-
-.calculadora {
-  background: white;
-  border-radius: 16px;
-  padding: 24px;
-  max-width: 800px;
-  max-height: 400px;
-  margin: 0 auto;
-  display: flex;
+  margin: 0;
+  padding: 0;
 }
 @media (max-width: 1024px) {
-  .calculadora {
-    max-height: max-content;
-    width: 80%;
+  body {
+    height: 100%;
+  }
+}
+
+.container {
+  max-width: 800px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100%;
     margin: 0 auto;
   }
 }
-.calculadora .container {
+.container .calculadora {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 800px;
+  height: max-content;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
   grid-gap: 32px;
   /* DISPLAY*/
 }
-@media (max-width: 767px) {
-  .calculadora .container {
-    grid-template-columns: 1fr;
-    align-items: center;
+@media (max-width: 1024px) {
+  .container .calculadora {
+    margin: 32px 0;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
-.calculadora .container .insert__dados label {
+.container .calculadora .insert__dados {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.container .calculadora .insert__dados label {
   font-size: 16px;
   font-size: 14px;
   color: #5e7a7d;
@@ -48,7 +59,9 @@ body {
   display: block;
   margin-bottom: 8px;
 }
-.calculadora .container .insert__dados input {
+.container .calculadora .insert__dados #bill,
+.container .calculadora .insert__dados #peoples {
+  padding: 8px 16px;
   font-size: 24px;
   color: #00494d;
   font-weight: 700;
@@ -56,24 +69,32 @@ body {
   outline: none;
   border: none;
   border-radius: 8px;
+  text-align: right;
   display: inline-flex;
-  align-items: flex-end;
 }
-.calculadora .container .insert__dados .tip {
+@media (max-width: 1024px) {
+  .container .calculadora .insert__dados #bill,
+.container .calculadora .insert__dados #peoples {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+.container .calculadora .insert__dados .tip {
   margin: 32px 0;
 }
-.calculadora .container .insert__dados .tip p {
+.container .calculadora .insert__dados .tip p {
   font-size: 14px;
   color: #5e7a7d;
   font-weight: 700;
 }
-.calculadora .container .insert__dados .tip .tip__wrapper {
-  display: flex;
-  flex-wrap: wrap;
+.container .calculadora .insert__dados .tip .tip__wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 80px);
+  justify-content: center;
+  gap: 32px;
 }
-.calculadora .container .insert__dados .tip .tip__wrapper .button__tip {
+.container .calculadora .insert__dados .tip .tip__wrapper .button__tip {
   background: #00494d;
-  margin-right: 16px;
   display: inline-flex;
   justify-content: center;
   border: 0;
@@ -82,46 +103,98 @@ body {
   border-radius: 8px;
   width: 80px;
   text-align: center;
-  margin-bottom: 16px;
   color: #fff;
   font-size: 18px;
   font-family: "Space Mono", monospace;
 }
-.calculadora .container .display__result {
+.container .calculadora .insert__dados .tip .tip__wrapper input {
+  text-align: center;
+  border: none;
+  outline-color: #00494d;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 18px;
+  font-family: "Space Mono", monospace;
+  background: #f4fafa;
+}
+.container .calculadora .number__peoples {
+  position: relative;
+}
+.container .calculadora .number__peoples ion-icon {
+  position: absolute;
+  bottom: 26px;
+  left: 10px;
+  color: #5e7a7d;
+}
+.container .calculadora .display__result {
   border-radius: 16px;
   padding: 16px 32px;
   background: #00494d;
+  display: flex;
+  flex-direction: column;
 }
-.calculadora .container .display__result .tip__info {
+@media (max-width: 1024px) {
+  .container .calculadora .display__result {
+    max-width: 100%;
+    min-width: 300px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+}
+.container .calculadora .display__result .tip__info {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.calculadora .container .display__result .tip__info p {
+.container .calculadora .display__result .tip__info p {
   color: #fff;
   font-size: 16px;
   font-weight: 700;
 }
-.calculadora .container .display__result .tip__info span {
+.container .calculadora .display__result .tip__info p span {
+  display: block;
+  font-size: 12px;
+  color: #eee;
+}
+.container .calculadora .display__result .tip__info span {
+  padding-top: 8px;
   font-size: 32px;
   color: #26c0ab;
   font-weight: 700;
 }
-.calculadora .container .display__result .tip__total {
+.container .calculadora .display__result .tip__total {
   padding-top: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.calculadora .container .display__result .tip__total p {
+.container .calculadora .display__result .tip__total p {
   color: #fff;
   font-size: 16px;
   font-weight: 700;
 }
-.calculadora .container .display__result .tip__total span {
+.container .calculadora .display__result .tip__total p span {
+  display: block;
+  font-size: 12px;
+  color: #eee;
+}
+.container .calculadora .display__result .tip__total span {
   font-size: 32px;
   color: #26c0ab;
   font-weight: 700;
+}
+.container .calculadora .display__result .btnReset {
+  padding: 16px 32px;
+  text-align: center;
+  width: 100%;
+  background: #26c0ab;
+  border: none;
+  outline: 0;
+  display: block;
+  margin: 64px auto 0 auto;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 8px;
 }
 
 body.error input {
@@ -130,4 +203,15 @@ body.error input {
 
 .msg {
   color: red;
+  font-size: 12px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.attribution {
+  margin-top: 32px;
 }/*# sourceMappingURL=style.css.map */

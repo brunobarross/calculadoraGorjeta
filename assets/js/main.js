@@ -13,27 +13,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function calculoPorcentagem(event) {
-        const valorConta = Number(inptValorConta.value);
-        const qtdPessoas = Number(inptPessoas.value);
-        const valorBotao = Number(this.value);
+        let valorConta = Number(inptValorConta.value);
+        let qtdPessoas = Number(inptPessoas.value);
+        let valorBotao = Number(this.value);
+        inptPessoas.nextElementSibling.innerHTML = "";
 
-        if (valorConta <= 0 || qtdPessoas <= 0) {
+        /*CASO VALOR SEJA IGUAL A ZERO OU VAZIO*/
+        if (valorConta == 0 || qtdPessoas == 0) {
             console.log('error')
             document.body.classList.add('error');
-            inptValorConta.nextElementSibling.innerHTML = "todos os campos devem estar preenchidos";
-            inptPessoas.nextElementSibling.innerHTML = "todos os campos devem estar preenchidos";
+            inptPessoas.nextElementSibling.innerHTML = "os valores não pode ser igual a zero";
         } else {
+            document.body.classList.remove('error');
+            let valorGorjeta = (valorBotao * valorConta) / 100;
+            let divisaoPessoas = Number((valorConta + valorGorjeta) / qtdPessoas);
+            const tipInfo = document.querySelector('#valorGorjeta');
+            const valorDivido = document.querySelector('#valorTotal');
+            const btnReset = document.querySelector('.btnReset');
 
-            let calculo = (valorConta * valorBotao) / 100;
-
-            let divisaoPessoas = Number(Math.round(calculo / qtdPessoas));
+            /* MOSTRA NA TELA DE LCD*/
 
             function mostrarLCD() {
-                const tipInfo = document.querySelector('#valorGorjeta');
-                const valorDivido = document.querySelector('#valorTotal');
-                tipInfo.innerHTML = `$${calculo}`;
+                tipInfo.innerHTML = `$${valorGorjeta}`;
                 valorDivido.innerHTML = `$${divisaoPessoas}`;
             }
+
+
+            /* RESET */
+            btnReset.addEventListener('click', (event)=>{
+                tipInfo.innerHTML = '$0';
+                valorDivido.innerHTML = '$0';
+                inptValorConta.focus();
+                inptValorConta.value ="";
+                inptPessoas.value ="";
+                
+                
+                
+
+            });
 
 
             mostrarLCD();
